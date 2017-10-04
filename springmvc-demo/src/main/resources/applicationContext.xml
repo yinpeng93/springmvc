@@ -8,8 +8,17 @@
     <context:component-scan base-package="com.yp.controller"/>
     <!--mvc注解扫描-->
     <mvc:annotation-driven/>
+    <!--配置视图解析器-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!--配置前缀-->
         <property name="prefix" value="/WEB-INF/jsp/"/>
+        <!--配置后缀-->
         <property name="suffix" value=".jsp"/>
+    </bean>
+    <!--200*1024*1024即200M，resolvelazily属性启用是为了推迟文件解析，以便捕获文件大小异常-->
+    <bean name="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="utf-8"/>
+        <property name="maxUploadSize" value="209715200"/>
+        <property name="resolveLazily" value="true"/>
     </bean>
 </beans>
